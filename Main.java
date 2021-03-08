@@ -1,9 +1,11 @@
+import java.text.DecimalFormat;
 import java.util.Scanner;
 
 public class Main {
     public static void main (String [] args){
-        ContBancar obj = new ContBancar("Suta Andrei-Radu", "856721");
+        ContBancar obj = new ContBancar("Suta Andrei-Radu", 4429);
         obj.sold = 6000.00;
+        DecimalFormat formatBani = new DecimalFormat("###,##0.00");
         obj.Meniu();
     }
 }
@@ -12,9 +14,9 @@ class ContBancar {
     double sold;
     String ultimaTranzactie;
     String titular;
-    String  id;
+    int  id;
 
-    ContBancar(String tit, String i){
+    ContBancar(String tit, int i){
         titular = tit;
         id = i;
         ultimaTranzactie = "Nu a fost gasita nicio tranzactie!";
@@ -46,8 +48,16 @@ class ContBancar {
     void Meniu(){
         Scanner scanner = new Scanner(System.in);
         int optiune = 0;
+        int pin = 4429;
         System.out.println("Bine ati venit, " + titular+"!");
-        System.out.println("ID-ul dumneavoastra este " + id);
+        System.out.println("Introduceti PIN-ul ");
+        int x = scanner.nextInt();
+        if(x != pin){
+            System.out.println("PIN incorect, va rugam incercati din nou!");
+            System.exit(0);
+        }
+        System.out.println("\n");
+        System.out.println("PIN corect! Alegeti optiunea dorita:");
         System.out.println("\n");
         System.out.println("1. Afisarea soldului pe ecran");
         System.out.println("2. Depuneti o suma in cont");
